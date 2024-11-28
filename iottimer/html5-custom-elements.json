@@ -1,0 +1,18 @@
+{
+  "tags": [
+    {
+      "name": "UiWidget",
+      "description": "A custom widget element",
+      "attributes": [
+        {
+          "name": "id",
+          "description": "Unique identifier for the widget"
+        },
+        {
+          "name": "class",
+          "description": "List of CSS classes the element has"
+        }
+      ]
+    }
+  ]
+}

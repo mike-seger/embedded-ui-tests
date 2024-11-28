@@ -1,0 +1,107 @@
+:root {
+  --track-width: 100%;
+  --track-height: 9px;
+  --track-bg: #1d68d0;
+  --track-bg-focus: #3173cf;
+ /* --track-radius: 0;*/
+    --track-radius: calc(var(--track-height) / 2);
+  --track-border: 1px solid #1d68d0;
+
+  --thumb-width: 19px;
+  --thumb-height: 19px;
+  --thumb-border: 1px solid #1d68d0; /* Darkened track-bg by 20% */
+  --thumb-radius: 50%;
+  --thumb-bg: #fff;
+
+  --margin-top: calc(-1 * ((var(--thumb-height) - var(--track-height)) / 2));
+}
+
+/* Track Styles */
+.track {
+  width: var(--track-width);
+  height: var(--track-height);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Thumb Styles */
+.thumb {
+  border: var(--thumb-border);
+  height: var(--thumb-height);
+  width: var(--thumb-width);
+  border-radius: var(--thumb-radius);
+  background: var(--thumb-bg);
+  cursor: pointer;
+}
+
+/*
+https://blog.logrocket.com/creating-custom-css-range-slider-javascript-upgrades/
+*/
+/* Range Input Styles */
+input[type="range"] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  /*width: 100%;*/
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px;
+  /*  overflow: hidden;  remove this line*/
+
+  /* New additions */
+  height: var(--track-height);
+  background: var(--track-bg);
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  height: 15px;
+  width: 15px;
+  background-color: var(--thumb-bg);
+  border-radius: 50%;
+  border: none;
+
+  /* box-shadow: -407px 0 0 400px #f50; remove this line */
+  transition: .2s ease-in-out;
+}
+
+/* Thumb: Firefox */
+input[type="range"]::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: var(--thumb-bg);
+  border-radius: 50%;
+  border: none;
+
+  /* box-shadow: -407px 0 0 400px #f50; emove this line */
+  transition: .2s ease-in-out;
+}
+
+/* Hover, active & focus Thumb: Webkit */
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 10px rgba(255,85,0, .1)
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 13px rgba(255,85,0, .2)
+}
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 13px rgba(255,85,0, .2)
+}
+
+/* Hover, active & focus Thumb: Firfox */
+
+input[type="range"]::-moz-range-thumb:hover {
+  box-shadow: 0 0 0 10px rgba(255,85,0, .1)
+}
+input[type="range"]:active::-moz-range-thumb {
+  box-shadow: 0 0 0 13px rgba(255,85,0, .2)
+}
+input[type="range"]:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 13px rgba(255,85,0, .2)
+}

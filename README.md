@@ -1,1 +1,1 @@
-# mobile-ui-tests
+# embedded-ui-tests

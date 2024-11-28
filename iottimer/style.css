@@ -1,0 +1,215 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    background: #161616;
+}
+
+body,* {
+    box-sizing: border-box;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",
+        Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a {
+    color: rgb(155, 186, 255);
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.container {
+    margin-top: 56px;
+    padding-bottom: 60px;
+    xxpadding: 40px;
+    max-width: 500px;
+    color: #fff;
+    background: #000;
+    box-shadow: 0 0 100px rgba(0,0,0,.5);
+    xxborder: 10px solid #444;
+    border-radius: 50px;
+}
+
+.bottom {
+    padding: 8px 8px 38px 8px;
+    background: #161616;
+}
+
+.row {
+    margin: 0 0 8px 10px;
+    xpadding-right: 3px;
+}
+
+.settings-group {
+    padding: 0 0 0 0;
+}
+
+.flex-row {
+    display: flex;
+    justify-items: stretch;
+    align-items: flex-start;
+    /*margin: 0 8px 0 0px;*/
+    padding-left: 10px;
+    flex-wrap: wrap;
+}
+
+.col {
+    width: 25%;
+    margin-left: 8px;
+}
+
+.col1 { width: 28%; }
+.col2, .col3, .col4 { padding-left: 2px; }
+.col2 { width: 17%; }
+.col3 { width: 15%; }
+.col4 { width: 40%; }
+.colUTC { width: calc(100% - 90px) !important; padding: 0; }
+.colUTCText { padding: 0; }
+
+.rangeStyle {
+    width: calc(100% - 30px);
+}
+
+.uiw-utcoffset div, .uiw-range div {
+    display: inline-block;
+    white-space: nowrap;
+    padding-top: 1px;
+    font-size: 14px;
+}
+
+.slider-container {
+    /*margin-top: 40px;*/
+    width: calc(100% - 25px);
+}
+
+.slider-value {
+    margin-top: 4px;
+    /*padding-top: 6px;*/
+    line-height: 16px;
+    display: inline;
+}
+
+h1 {
+    margin: 0;
+    padding: 14px 0 12px 8px;
+    font-family: Arial,sans-serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background: #161616;
+    opacity: 1;
+}
+
+h2 {
+    padding: 10px 0 10px 8px;
+    font-family: Arial,sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    background: #404040;
+}
+
+h3 {
+    font-family: Arial,sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    margin: 4px 0 3px 8px;
+}
+
+.submit {
+    position: fixed;
+    margin: 0 0 0 0;
+    padding: 8px 8px 8px 8px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #161616;
+    xopacity: 0.97;
+    z-index: 10;
+}
+
+@media all and (max-width:520px) {
+    .wrapper {
+        padding: 0;
+    }
+
+    .container {
+        padding: 0px 0px;
+        border: 0;
+        border-radius: 0;
+    }
+}
+
+label {
+    display: block;
+    width: 100%;
+    margin: 0 0 2px 0px;
+    font-size: .75rem;
+}
+
+/* label+p {
+    margin-bottom: 5px;
+} */
+
+input *, input, select, option {
+    font-size: 14px;
+}
+
+input[type="text"],input[type="number"],input[type="password"],select, button {
+    width: 100%;
+}
+
+input[type="text"],input[type="number"],input[type="password"],select {
+    display: inline-block;
+    height: 28px;
+    line-height: 38px;
+    padding: 0 4px;
+    color: #fff;
+    border: 2px solid #666;
+    background: none;
+    border-radius: 5px;
+    transition: .15s;
+    box-shadow: none;
+    outline: none;
+}
+
+input[type="text"]:hover,input[type="number"]:hover,input[type="password"]:hover,select:hover {
+    border-color: #b1734f;
+}
+
+input[type="text"]:focus,input[type="password"]:focus,select:focus {
+    border-color: #ffb78e;
+}
+
+option {
+    color: #000;
+}
+
+@supports (-webkit-appearance: none) {
+    select {
+        padding: 0.2em 0 0.2em 0.1em; /* Adjust top/bottom/left padding */
+        line-height: 1.5; /* Tweak line-height to vertically center text */
+    }
+}
+
+button {
+    display: block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #ffa46f;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .15s;
+    outline: none;
+}
+
+button:hover {
+    background: #ffb78e;
+}

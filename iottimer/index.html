@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="range.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Iottimer Clock Settings</title>
+</head>
+<body>
+<div class="wrapper">
+    <form method="post" action="/">
+        <div class="container">
+            <h1>IotTimer Clock Settings</h1>
+            <div class="settings-group">
+                <h2>WiFi</h2>
+                <UiWidget id="wifi.ssid" class="row"></UiWidget>
+                <UiWidget id="wifi.password" class="row"></UiWidget>
+            </div>
+            <div class="settings-group">
+            <h2>Display</h2>
+            <UiWidget id="display.timeformat" class="row"></UiWidget>
+            <UiWidget id="display.brightness" class="row"></UiWidget>
+            </div>
+            <div class="settings-group">
+            <h2>Time Sync</h2>
+            <UiWidget id="timesync.ntp" class="row"></UiWidget>
+            <UiWidget id="timesync.utcoffset" class="row"></UiWidget>
+            <div class="row">
+                <label for="dst_enable">
+                    <input type="checkbox" id="dst_enable" name="dst_enable" value="1"
+                        onClick="JavaScript:toggleVisibility(this,'dst_wrapper');" checked="checked"
+                    >Enable Daylight Saving (summer time) <a
+                        href="https://www.timeanddate.com/time/zone/uk/london" target="_blank">ⓘ</a>
+                </label>
+            </div>
+            <div id="dst_wrapper">
+                <h2>Daylight Saving</h2>
+                <h3>Standard (winter) time start</h3>
+                <div class="flex-row">
+                    <UiWidget id="dst.std_week" class="col1"></UiWidget>
+                    <UiWidget id="dst.std_day" class="col2"></UiWidget>
+                    <UiWidget id="dst.std_month" class="col3"></UiWidget>
+                    <UiWidget id="dst.std_hour" class="col4"></UiWidget>
+                </div>
+                <h3>Daylight saving (summer) time start</h3>
+                <div class="flex-row">
+                    <UiWidget id="dst.dst_week" class="col1"></UiWidget>
+                    <UiWidget id="dst.dst_day" class="col2"></UiWidget>
+                    <UiWidget id="dst.dst_month" class="col3"></UiWidget>
+                    <UiWidget id="dst.dst_hour" class="col4"></UiWidget>
+                </div>
+                <UiWidget id="dst.offset" class="flex-row"></UiWidget>
+            </div>
+            <div class="bottom">&nbsp;</div>
+        </div>
+        <div class="submit">
+            <button type="submit">Save and reboot</button>
+        </div>
+    </form>
+</div>
+
+<script src="UiWidgets.js" type="text/javascript"></script>
+<script src="load-config.js" type="text/javascript"></script>
+<script>
+    function toggleVisibility(eventsender, idOfObjectToToggle) {
+        var myNewState = "none"
+        if (eventsender.checked === true) myNewState = "block"
+        document.getElementById(idOfObjectToToggle).style.display = myNewState
+    }
+</script>
+</body>
+</html>
