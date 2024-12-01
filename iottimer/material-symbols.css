@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'Material-Symbols';
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+  font-style: normal;
+  font-weight: 300;
+  src: local('Icons'),
+    local('Material-Symbols'),
+    url(./icons.woff2) format('woff2'),
+}
+
+.material-symbols {
+  font-family: 'Material-Symbols';
+  font-size: 40px;
+}
+
+.filled {
+    font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+
+.icon {
+    font-family: 'Material-Symbols';
+}
+
+.icon-add_alarm::before { content: "\e856"; }
+.icon-alarm::before { content: "\e855"; }
+.icon-bedtime::before { content: "\ef159"; }
+.icon-clear_day::before { content: "\f157"; }
+.icon-cloudy::before { content: "\f15c"; }
+.icon-cloudy_snowing::before { content: "\e810"; }
+.icon-device_thermostat::before { content: "\e1ff"; }
+.icon-display_settings::before { content: "\eb97"; }
+.icon-help::before { content: "\e8fd"; }
+.icon-home::before { content: "\e9b2"; }
+.icon-humidity_high::before { content: "\f163"; }
+.icon-humidity_low::before { content: "\f164"; }
+.icon-humidity_mid::before { content: "\f165"; }
+.icon-nest_display::before { content: "\f124"; }
+.icon-partly_cloudy_day::before { content: "\f172"; }
+.icon-partly_cloudy_night::before { content: "\f174"; }
+.icon-rainy::before { content: "\f176"; }
+.icon-rainy_heavy::before { content: "\f61f"; }
+.icon-rainy_light::before { content: "\f61e"; }
+.icon-rainy_snow::before { content: "\f61d"; }
+.icon-schedule::before { content: "\efd6"; }
+.icon-settings::before { content: "\e8b8"; }
+.icon-snowing::before { content: "\e80f"; }
+.icon-snowing_heavy::before { content: "\f61c"; }
+.icon-storm::before { content: "\f070"; }
+.icon-sunny::before { content: "\e81a"; }
+.icon-sunny_snowing::before { content: "\e819"; }
+.icon-system_update_alt::before { content: "\e8d7"; }
+.icon-thermometer::before { content: "\e846"; }
+.icon-thunderstorm::before { content: "\ebdb"; }
+.icon-timer::before { content: "\e425"; }
+.icon-tornado::before { content: "\e199"; }
+.icon-tsunami::before { content: "\ebd8"; }
+.icon-view_timeline::before { content: "\eb85"; }
+.icon-weather_hail::before { content: "\f67f"; }
+.icon-weather_mix::before { content: "\f60b"; }
+.icon-weather_snowy::before { content: "\e2cd"; }
+.icon-wifi::before { content: "\e63e"; }

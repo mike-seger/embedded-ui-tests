@@ -1,0 +1,102 @@
+label {
+    display: block;
+    width: 100%;
+    margin: 0 0 2px 0px;
+    font-size: .75rem;
+}
+
+input *, input, select, option {
+    font-size: 12px;
+}
+
+input[type="text"],input[type="number"],input[type="password"],select, button {
+    width: 100%;
+}
+
+input[type="text"],input[type="number"],input[type="password"],select {
+    display: inline-block;
+    height: 28px;
+    line-height: 38px;
+    padding: 0 4px;
+    color: #fff;
+    border: 2px solid #666;
+    background: none;
+    border-radius: 5px;
+    transition: .15s;
+    box-shadow: none;
+    outline: none;
+}
+
+input[type="text"]:hover,input[type="number"]:hover,input[type="password"]:hover,select:hover {
+    border-color: #b1734f;
+}
+
+input[type="text"]:focus,input[type="password"]:focus,select:focus,.submit {
+    border-color: #ffb78e;
+}
+
+input[type="range"] {
+    margin-bottom: -13px;
+}
+
+option {
+    color: #000;
+}
+
+@supports (-webkit-appearance: none) {
+    select {
+        padding: 0.2em 0 0.2em 0.1em;
+        line-height: 1.5;
+    }
+}
+
+.submit > button {
+    height: 40px;
+    font-size: 16px;
+    color: black;
+    border-radius: 5px;
+    border: 0;
+
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #ffa46f;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .15s;
+    outline: none;
+}
+
+.tab-selectors > button {
+    display: block;
+    padding: 4px 4px;
+    border: none;
+    cursor: pointer;
+    transition: .15s;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab-selectors > button.selected {
+    color: #4db4ff;
+}
+
+.rangeStyle {
+    width: calc(100% - 22px);
+}
+
+.uiw-utcoffset div, .uiw-range div {
+    display: inline-block;
+    white-space: nowrap;
+    padding-top: 1px;
+    font-size: 12px;
+}
+
+.slider-container {
+    width: 100%;
+}
+
+.slider-value {
+    line-height: 16px;
+    display: inline-block;
+}

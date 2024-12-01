@@ -1,0 +1,54 @@
+.tabs {
+    margin-top: 75px;
+    display: flex;
+    width: 100%;
+    height: 800px;
+}
+
+.tab-selectors {
+    margin: 10px 0 0 8px ;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 78px;
+}
+
+.tab-selectors > button {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: none;
+    background: #161616;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 32px;
+    line-height: 1;
+}
+
+.tab-selectors > button .icon {
+    display: inline-block;
+    font-size: 48px;
+    font-weight: 700;
+    border: 0;
+}
+
+.tab-content {
+    flex-grow: 1;
+    display: none;
+    padding: 0;
+    width: 100%;
+    margin-left: 80px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.tab-content.active {
+    display: block;
+}

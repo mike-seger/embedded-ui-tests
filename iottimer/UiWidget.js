@@ -2,32 +2,17 @@ const month3 = [ "Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", 
 const weekDays3 = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 const weekInMonth = ["Last", "First", "Second", "Third", "Fourth"]
 
-function updateOffsetLabel(el) {
-    const value = el.value
-    const sign = Math.sign(value)
-    const absHours = Math.floor(Math.abs(value) / 60)
-    const absHoursStr = absHours.toString()
-    const minutes = Math.abs(value % 60).toString()
-    const offsetString = `UTC ${sign >= 0 ? '+' : '-'}${absHoursStr.padStart(2, '0')}:${minutes.padStart(2, '0')}`
-    document.getElementById(`rv-${el.id}`).textContent = offsetString
-}
-
-function updateOffsetLabel1(el) {
-    const value = parseInt(el.value, 10)
-    const sign = Math.sign()
-    const hours = Math.floor(value / 60)
-    const minutes = ((value % 60) + 60) % 60 // Correctly handle negative modulus
-    const absHours = Math.abs(hours).toString()
-    const offsetString = `UTC ${hours >= 0 ? '+' : '-'}${absHours.padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    document.getElementById(`rv-${el.id}`).textContent = offsetString;
-}
-
-function toggleSlider(el) {
-    const sliderContainer = document.getElementById(`${el.id}`);
-    sliderContainer.classList.toggle("active");
-}
-
 function renderUiWidgets(json) {
+    function updateOffsetLabel(el) {
+        const value = el.value
+        const sign = Math.sign(value)
+        const absHours = Math.floor(Math.abs(value) / 60)
+        const absHoursStr = absHours.toString()
+        const minutes = Math.abs(value % 60).toString()
+        const offsetString = `UTC ${sign >= 0 ? '+' : '-'}${absHoursStr.padStart(2, '0')}:${minutes.padStart(2, '0')}`
+        document.getElementById(`rv-${el.id}`).textContent = offsetString
+    }
+
     document.querySelectorAll("UiWidget").forEach(widget => {
         const id = widget.id
         const config = json.find(item => `${item.path}.${item.name}` === id)
@@ -46,6 +31,12 @@ function renderUiWidgets(json) {
             return `<select id="${id}" name="${id}">${options.join("")}</select>`
         }
 
+        function createRange(id, min, max, step, value, inputClass, valueClass) {
+            return `<div class="range-element"><input type="range" id="${id}" min="${min}" max="${max}"
+                step="${step}" name="${id}" value="${value}" class="${inputClass}"
+                ><div id="rv-${id}" class="${valueClass}"></div></div>`
+        }
+
         // Build HTML for the widget
         const { label, value, "ui-type": uiType, "ui-options": uiOptions } = config
         let replacementHtml = `<label for="${id}">${label}</label>`
@@ -62,16 +53,9 @@ function renderUiWidgets(json) {
             replacementHtml += createSelect(weekInMonth.map((day, i) => `${i}=${day}`).join("|"))
         } else if (uiType === "range") {
             const [min, max, step] = uiOptions.split("|")
-            //                <div id="slider-container-${id}" class="slider-container">
-            replacementHtml += `
-                <input type="range" id="${id}" min="${min}" max="${max}"
-                    step="${step}" name="${id}" value="${value}" class="rangeStyle">
-                <div id="rv-${id}" class="slider-value">${value}</div>
-            `
+            replacementHtml += createRange(id, min, max, step, value, "rangeStyle", "slider-value")
         } else if (uiType === "utcoffset") {
-            replacementHtml += `<input type="range" id="${id}" min="-720" max="840"
-                step="15" name="${id}" value="${value}" class="colUTC"
-                ><div id="rv-${id}" class="colUTCText">UTC +00:00</div>`
+            replacementHtml += createRange(id, -720, 840, 15, value, "colUTC", "colUTCText")
         } else {
             console.warn(`Unsupported ui-type: ${uiType} in:`, widget)
         }
@@ -82,7 +66,7 @@ function renderUiWidgets(json) {
     document.querySelectorAll("input[type='range']").forEach(input => {
         console.log("rangestyle: "+input.id)
         input.addEventListener("input", () => {
-            document.getElementById("rv-"+input.id).textContent = input.value;
+            document.getElementById("rv-"+input.id).textContent = input.value
         })
         document.getElementById("rv-"+input.id).textContent = input.value;
     })
