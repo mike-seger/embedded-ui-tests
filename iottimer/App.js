@@ -102,6 +102,10 @@ function toggleVisibility(eventsender, idOfObjectToToggle) {
     document.getElementById(idOfObjectToToggle).style.display = myNewState
 }
 
+function unhide(id) {
+    document.getElementById(id).classList.remove('hidden')
+}
+
 function initTabs() {
     document.querySelectorAll('.tab-selectors button')?.forEach(button => {
         button.addEventListener('click', () => {
@@ -112,6 +116,22 @@ function initTabs() {
             document.getElementById(tabId).classList.add('active');
         });
     });
+}
+
+function setSimulationMode() {
+    if(simulationMode) {
+        document.getElementById('clock-address').value = clockAddress
+        unhide("clock-target-tab-selector")
+        console.log("clock-address is: "+localStorage.getItem('clock-address'))
+    }
+}
+
+function saveClockAddress(event) {
+    event.preventDefault()
+    const clockAddress = document.getElementById('clock-address').value.trim()
+    localStorage.setItem('clock-address', clockAddress)
+    alert('OK, set clock address to: '+localStorage.getItem('clock-address'))
+    window.location.reload(true)
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -144,4 +164,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     await setupEventHandlersAndSync(Type.display, "change", "display.is12H")
     await setupEventHandlersAndSync(Type.brightness, "input", "brightness.lightMin")
     await setupEventHandlersAndSync(Type.dst, "input", "dst.timezone")
+    setSimulationMode()
 })

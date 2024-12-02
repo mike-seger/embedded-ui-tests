@@ -20,6 +20,9 @@
         <button data-tab="time-tab"><span class="icon icon-schedule"></span>️</button>
         <button data-tab="wifi-tab"><span class="icon icon-wifi"></span></button>
         <button data-tab="info-tab"><span class="icon icon-info"></span>️</button>
+        <button data-tab="clock-target-tab" class="hidden" id="clock-target-tab-selector">
+            <span class="icon icon-display_settings"></span>️
+        </button>
     </div>
 
     <div class="tabs">
@@ -31,6 +34,7 @@
                 <UiWidget id="display.isTempF" class="row"></UiWidget>
             </div>
         </div>
+
         <form id="submitter" method="post">
         <div id="wifi-tab" class="tab-content">
             <div class="settings-group">
@@ -76,6 +80,19 @@
                 <UiWidget id="info.ver_note" class="text-row"></UiWidget>
                 <UiWidget id="info.rtc" class="text-row"></UiWidget>
                 <UiWidget id="info.factoryTime" class="text-row"></UiWidget>
+            </div>
+        </div>
+        <div id="clock-target-tab" class="tab-content">
+            <h1>Clock Target</h1>
+            <div class="settings-group">
+                <div class="uiw-text row">
+                    <label for="clock-address">Clock &lt;host:port&gt; (leave empty for simulation)</label>
+                    <input type="text" id="clock-address" name="clock-address"
+                       value="michaels-macmini-2023:38080" style="width: 100%;" class="text-row">
+                </div>
+                <div class="submit">
+                    <button onclick="saveClockAddress(event)">Set + Reload</button>
+                </div>
             </div>
         </div>
         </form>

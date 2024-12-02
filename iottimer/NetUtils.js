@@ -22,16 +22,19 @@ const Type = (() => {
     }
 })()
 
-let simulationMode = isSimulationMode()
+let clockAddress = localStorage.getItem('clock-address').trim()
+let simulationMode = undefined
 
 async function isSimulationMode() {
+    if(simulationMode && simulationMode!==undefined) return true
     let result = false
     try {
-        const response = await fetch("../get?type=" + Type.display)
+        const response = await fetch("get?type=" + Type.display)
         result = response.status === 404
     } catch (error) { console.error("Fetch error:", error) }
-    if(!result) console.log("Simulation mode required.")
-    return result
+    simulationMode = result
+    console.log("Simulation mode: "+simulationMode)
+    return simulationMode
 }
 
 async function delay(ms) {
@@ -40,8 +43,12 @@ async function delay(ms) {
 
 async function getSettings(type) {
     try {
-        if(simulationMode) return simulatedGetSettings(type)
-        const response = await fetch("../get?type=" + type)
+        let url = "get?type=" + type
+        if(isSimulationMode()) {
+            if(clockAddress?.trim() === "") return simulatedGetSettings(type)
+            url = `//${clockAddress}/${url}`
+        }
+        const response = await fetch(url)
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
         const jsonData = await response.json()
         return jsonData
@@ -53,11 +60,15 @@ async function getSettings(type) {
 
 async function postSettings(type, data) {
     try {
-        if(simulationMode) return simulatedPostSettings(type, data)
+        let url = "set"
+        if(isSimulationMode()) {
+            if(clockAddress?.trim() === "") return simulatedPostSettings(type, data)
+            url = `//${clockAddress}/${url}`
+        }
         const dataClone = JSON.parse(JSON.stringify(data))
         dataClone.type = type
         console.log("POST "+Type.getName(type), dataClone)
-        const response = await fetch("../set", {
+        const response = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataClone)

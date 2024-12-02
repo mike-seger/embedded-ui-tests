@@ -39,6 +39,10 @@
     border: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 .tab-selectors > button:not(.selected) .icon {
     color: rgb(220, 220, 220);
 }

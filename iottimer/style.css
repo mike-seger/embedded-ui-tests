@@ -143,3 +143,7 @@ h3 {
     text-align: left;
     overflow-wrap: break-word;
 }
+
+#clock-address {
+    width: 280px;
+}
