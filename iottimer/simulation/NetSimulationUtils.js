@@ -1,10 +1,17 @@
-const simulatedSettings = {}
+function loadSimulatedSettings() {
+    return JSON.parse(localStorage.getItem('simulatedSettings') || "{}")
+}
+
+function saveSimulatedSettings(simulatedSettings) {
+    localStorage.setItem('simulatedSettings', JSON.stringify(simulatedSettings))
+}
+
 const simulatedResponseTimeMs = 3
 
 async function simulatedGetSettings(type) {
     try {
         await delay(simulatedResponseTimeMs)
-        const simulatedSettingsEntry = simulatedSettings[type]
+        const simulatedSettingsEntry = loadSimulatedSettings()[type]
         if(simulatedSettingsEntry) {
             console.log("GET (simulated/modified) "+Type.getName(type), simulatedSettingsEntry)
             return simulatedSettingsEntry
@@ -24,6 +31,8 @@ async function simulatedPostSettings(type, data) {
     const dataClone = JSON.parse(JSON.stringify(data))
     dataClone.type = type
     console.log("POST (simulated) "+Type.getName(type), dataClone)
+    const simulatedSettings = loadSimulatedSettings()
     simulatedSettings[type] = data
+    saveSimulatedSettings(simulatedSettings)
     return { "status": 0, "msg": "succ" }
 }

@@ -139,30 +139,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     addSubmitListener()
     initTabs()
 
-    async function setupEventHandlersAndSync(type, event, elementId) {
-        const element = document.getElementById(elementId)
-        element.dataInitialized = false
-
+    async function setupEventHandlersAndSync(type, event, elementIds) {
         const settings = await loadSettings(type)
-        // Attach event listener for changes
-        element.addEventListener(event, async () => {
-            if(element.programmaticChange) {
-                element.programmaticChange = false
-                return
-            }
-            mapInputsToObjects(type, settings)
-            //if(element.dataInitialized)
-                await updateSettings(type, settings)
-            element.dataInitialized = true
-        })
+        elementIds.forEach(async elementId => {
+            const element = document.getElementById(elementId)
+            element.dataInitialized = false
 
-        // Sync initial values from settings to inputs
-        mapObjectsToInputs(type, await loadSettings(type))
+            // Attach event listener for changes
+            element.addEventListener(event, async () => {
+                if(element.programmaticChange) {
+                    element.programmaticChange = false
+                    return
+                }
+                mapInputsToObjects(type, settings)
+                await updateSettings(type, settings)
+                element.dataInitialized = true
+            })
+
+            // Sync initial values from settings to inputs
+            mapObjectsToInputs(type, settings)
+        })
     }
 
-    await setupEventHandlersAndSync(Type.display, "change", "display.isTempF")
-    await setupEventHandlersAndSync(Type.display, "change", "display.is12H")
-    await setupEventHandlersAndSync(Type.brightness, "input", "brightness.lightMin")
-    await setupEventHandlersAndSync(Type.dst, "input", "dst.timezone")
+    await setupEventHandlersAndSync(Type.display, "change", ["display.isTempF", "display.is12H"])
+    await setupEventHandlersAndSync(Type.brightness, "input", ["brightness.lightMin"])
+    await setupEventHandlersAndSync(Type.dst, "input", ["dst.timezone"])
     setSimulationMode()
 })
