@@ -46,7 +46,7 @@ async function getSettings(type) {
         let url = "get?type=" + type
         if(isSimulationMode()) {
             if(clockAddress?.trim() === "") return simulatedGetSettings(type)
-            url = `//${clockAddress}/${url}`
+            url = `http://${clockAddress}/${url}`
         }
         const response = await fetch(url)
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
@@ -63,7 +63,7 @@ async function postSettings(type, data) {
         let url = "set"
         if(isSimulationMode()) {
             if(clockAddress?.trim() === "") return simulatedPostSettings(type, data)
-            url = `//${clockAddress}/${url}`
+            url = `http://${clockAddress}/${url}`
         }
         const dataClone = JSON.parse(JSON.stringify(data))
         dataClone.type = type
