@@ -23,7 +23,7 @@ const Type = (() => {
 })()
 
 let clockAddress = localStorage.getItem('clock-address').trim()
-let simulationMode = undefined
+let simulationMode = false
 
 async function isSimulationMode() {
     if(simulationMode && simulationMode!==undefined) return true
