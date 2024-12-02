@@ -1,0 +1,16 @@
+{
+  "offMode": 1,
+  "sensitivity": 1,
+  "holidaysStatus": 1,
+  "updateTime": 1731697339,
+  "alarmNum": 1,
+  "alarmInfo": [
+    {
+      "mode": 0,
+      "week": 127,
+      "ringtones": 0,
+      "time": 360,
+      "delay": 6
+    }
+  ]
+}

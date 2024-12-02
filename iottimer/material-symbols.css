@@ -34,6 +34,7 @@
 .icon-humidity_high::before { content: "\f163"; }
 .icon-humidity_low::before { content: "\f164"; }
 .icon-humidity_mid::before { content: "\f165"; }
+.icon-info::before { content: "\e88e"; }
 .icon-nest_display::before { content: "\f124"; }
 .icon-partly_cloudy_day::before { content: "\f172"; }
 .icon-partly_cloudy_night::before { content: "\f174"; }

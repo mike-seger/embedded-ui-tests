@@ -38,11 +38,18 @@ function renderUiWidgets(json) {
         }
 
         // Build HTML for the widget
-        const { label, value, "ui-type": uiType, "ui-options": uiOptions } = config
+        const { label, value, format, "ui-type": uiType, "ui-options": uiOptions } = config
         let replacementHtml = `<label for="${id}">${label}</label>`
+
+        let formattedValue = value
+        if(format === "epochString") {
+            formattedValue = new Date(value * 1000).toISOString().substring(0,19).replace("T"," ")
+        }
 
         if (uiType === "text" || uiType === "password" || uiType === "number") {
             replacementHtml += `<input type="${uiType}" id="${id}" name="${id}" value="${value}">`
+        } else if (uiType === "staticText") {
+            replacementHtml = `<span class="static-text-label">${label}</span><span class="static-text">${formattedValue}</span>`
         } else if (uiType === "select" && uiOptions) {
             replacementHtml += createSelect(uiOptions)
         } else if (uiType === "selectMonth3") {
@@ -53,7 +60,7 @@ function renderUiWidgets(json) {
             replacementHtml += createSelect(weekInMonth.map((day, i) => `${i}=${day}`).join("|"))
         } else if (uiType === "range") {
             const [min, max, step] = uiOptions.split("|")
-            replacementHtml += createRange(id, min, max, step, value, "rangeStyle", "slider-value")
+            replacementHtml += createRange(id, min, max, step, value, "range-style", "slider-value")
         } else if (uiType === "utcoffset") {
             replacementHtml += createRange(id, -720, 840, 15, value, "colUTC", "colUTCText")
         } else {

@@ -1,0 +1,17 @@
+{
+  "ssid": "mywifi",
+  "password": "dummy",
+  "list": [],
+  "state": 5,
+  "ntp": [
+    "ch.pool.ntp.org",
+    "1.ch.pool.ntp.org"
+  ],
+  "isDHCP": true,
+  "ip": [ 192, 168, 1, 106 ],
+  "mask": [ 255, 255, 255, 0 ],
+  "gateway": [ 192, 168, 1, 1 ],
+  "DNS": [ 192, 168, 1, 1 ],
+  "subDNS": [],
+  "MAC": [ 232, 219, 132, 155, 132, 111 ]
+}

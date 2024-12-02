@@ -16,6 +16,14 @@ const csv = `
     dst,dst_month,3,number,selectMonth3,,Month
     dst,dst_hour,2,number,range,0|23|1,Hour
     dst,dstOffset,60,number,select,20=20 min|30=30 min|40=40 min|60=60 min,Daylight Saving Time Offset
+    info,id,669248cee22b51ec2fcbd99c,string,staticText,,Id
+    info,model,CWT9S19,string,staticText,,Model
+    info,name,WHEN,string,staticText,,Name
+    info,ver_now,1.6.0,string,staticText,,Version (current)
+    info,ver_new,None,string,staticText,,Version (new)
+    info,ver_note,,string,staticText,,Version Note
+    info,rtc,83,string,staticText,,RTC
+    info,factoryTime,1724397953,epochString,staticText,,Factory Time
     `
 
 function trimLeft(str) { return str.split('\n').map(line => line.trimStart()).join('\n') }
@@ -56,6 +64,7 @@ function mapObjectsToInputs(type, obj) {
         const input = document.querySelector(`[name="${prefix}${key}"]`)
         if (input) {
             input.value = obj[key]
+            input.programmaticChange = true
             if (input.tagName.toLowerCase() === "select")
                 input.dispatchEvent(new Event("change"))
             else input.dispatchEvent(new Event("input"))
@@ -112,20 +121,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function setupEventHandlersAndSync(type, event, elementId) {
         const element = document.getElementById(elementId)
+        element.dataInitialized = false
 
         const settings = await loadSettings(type)
         // Attach event listener for changes
         element.addEventListener(event, async () => {
+            if(element.programmaticChange) {
+                element.programmaticChange = false
+                return
+            }
             mapInputsToObjects(type, settings)
-            updateSettings(type, settings)
+            //if(element.dataInitialized)
+                await updateSettings(type, settings)
+            element.dataInitialized = true
         })
 
         // Sync initial values from settings to inputs
         mapObjectsToInputs(type, await loadSettings(type))
     }
 
-    setupEventHandlersAndSync(Type.display, "change", "display.is12H")
-    setupEventHandlersAndSync(Type.display, "change", "display.isTempF")
-    setupEventHandlersAndSync(Type.brightness, "input", "brightness.lightMin")
-    setupEventHandlersAndSync(Type.dst, "input", "dst.timezone")
+    await setupEventHandlersAndSync(Type.display, "change", "display.isTempF")
+    await setupEventHandlersAndSync(Type.display, "change", "display.is12H")
+    await setupEventHandlersAndSync(Type.brightness, "input", "brightness.lightMin")
+    await setupEventHandlersAndSync(Type.dst, "input", "dst.timezone")
 })

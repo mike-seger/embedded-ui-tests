@@ -81,10 +81,6 @@ option {
     color: #4db4ff;
 }
 
-.rangeStyle {
-    width: calc(100% - 22px);
-}
-
 .uiw-utcoffset div, .uiw-range div {
     display: inline-block;
     white-space: nowrap;

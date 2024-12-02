@@ -1,0 +1,12 @@
+{
+  "timezone": 60,
+  "dstSW": true,
+  "dstStart": 1743296400,
+  "dstEnd": 1761444000,
+  "dstOffset": 60,
+  "timezone2": 540,
+  "dst2SW": false,
+  "dst2Start": 1710352800,
+  "dst2End": 1730916000,
+  "dst2Offset": 60
+}

@@ -1,0 +1,11 @@
+{
+  "language": 2,
+  "offset": 0,
+  "ctpe": 1,
+  "ledState": true,
+  "link": 0,
+  "resetSW": false,
+  "resetTime": 60,
+  "timerBeep": 2,
+  "timerDelay": 6
+}

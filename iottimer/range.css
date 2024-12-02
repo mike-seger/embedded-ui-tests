@@ -39,6 +39,10 @@ input[type="range"]::-moz-range-thumb {
   border: none;
 }
 
+.range-style {
+  width: calc(100% - 22px);
+}
+
 .range-element {
     width: 100%;
 }

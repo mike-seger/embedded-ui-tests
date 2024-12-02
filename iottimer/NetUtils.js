@@ -3,6 +3,7 @@ const Type = (() => {
         network: 2,
         dst: 3,
         display: 4,
+        info: 10,
         brightness: 13,
         restart: 21
     }
@@ -21,8 +22,25 @@ const Type = (() => {
     }
 })()
 
+let simulationMode = isSimulationMode()
+
+async function isSimulationMode() {
+    let result = false
+    try {
+        const response = await fetch("../get?type=" + Type.display)
+        result = response.status === 404
+    } catch (error) { console.error("Fetch error:", error) }
+    if(!result) console.log("Simulation mode required.")
+    return result
+}
+
+async function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function getSettings(type) {
     try {
+        if(simulationMode) return simulatedGetSettings(type)
         const response = await fetch("../get?type=" + type)
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
         const jsonData = await response.json()
@@ -35,6 +53,7 @@ async function getSettings(type) {
 
 async function postSettings(type, data) {
     try {
+        if(simulationMode) return simulatedPostSettings(type, data)
         const dataClone = JSON.parse(JSON.stringify(data))
         dataClone.type = type
         console.log("POST "+Type.getName(type), dataClone)
@@ -47,7 +66,7 @@ async function postSettings(type, data) {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
         return await response.json()
     } catch (error) {
-        console.error("Error during HTTP POST request:", error)
+        console.error(`Error during HTTP POST request with type ${type}:`, error)
         throw error
     }
 }
