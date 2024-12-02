@@ -19,7 +19,7 @@
 .tab-selectors > button {
     width: 48px;
     height: 48px;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,7 +35,7 @@
 .tab-selectors > button .icon {
     display: inline-block;
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 300;
     border: 0;
 }
 

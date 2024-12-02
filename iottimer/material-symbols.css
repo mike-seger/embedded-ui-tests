@@ -1,20 +1,22 @@
 @font-face {
   font-family: 'Material-Symbols';
-  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" -25, "opsz" 80;
   font-style: normal;
-  font-weight: 300;
+ /* font-weight: 600;*/
   src: local('Icons'),
     local('Material-Symbols'),
     url(./icons.woff2) format('woff2'),
 }
 
 .material-symbols {
-  font-family: 'Material-Symbols';
-  font-size: 40px;
+    font-family: 'Material-Symbols';
+    font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
+    font-size: 24px;
+    display: inline-block;
 }
 
 .filled {
-    font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+    font-variation-settings: "FILL" 1, "wght" 600, "GRAD" -50, "opsz" 48;
 }
 
 .icon {
