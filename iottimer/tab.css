@@ -34,9 +34,17 @@
 
 .tab-selectors > button .icon {
     display: inline-block;
-    font-size: 48px;
+    font-size: 50px;
     font-weight: 300;
     border: 0;
+}
+
+.tab-selectors > button:not(.selected) .icon {
+    color: rgb(220, 220, 220);
+}
+
+.tab-selectors .selected > button .icon  {
+    color: #4db4ff !important;
 }
 
 .tab-content {
