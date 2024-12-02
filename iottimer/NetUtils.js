@@ -22,7 +22,7 @@ const Type = (() => {
     }
 })()
 
-let clockAddress = localStorage.getItem('clock-address').trim()
+let clockAddress = (localStorage.getItem('clock-address') || "").trim()
 let simulationMode = false
 
 async function isSimulationMode() {
