@@ -5,7 +5,6 @@
     --h1-height: calc(var(--h1-top) + var(--h1-top) + var(--h1-top));
     --form-width: 300px;
     --body-width: 400px;
-    --body-height: 866px;
 }
 
 html,body {
@@ -18,20 +17,11 @@ html,body {
 }
 
 body {
-    width: var(--body-width);
-    height: var(--body-height);
-    margin: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform-origin: top left;
-    transform: scale(calc(100vw / 400));
-}
-
-@media (min-aspect-ratio: 400/866) {
-    body {
-        transform: scale(calc(100vh / 866));
-    }
 }
 
 body,* {
@@ -51,7 +41,9 @@ a {
 
 .container {
     width: var(--body-width);
-    height: var(--body-height);
+    position: relative;
+    transform-origin: 50% 50%;
+    flex: 0 0 auto;
 }
 
 .bottom {
@@ -96,12 +88,8 @@ h1 {
     font-family: Arial,sans-serif;
     font-weight: 300;
     font-size: var(--h1-font-size);
-    position: fixed;
-    top: 0;
     width: 100%;
-    z-index: 10;
     background: #161616;
-    opacity: 1;
 }
 
 h2 {

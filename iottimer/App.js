@@ -118,6 +118,41 @@ function initTabs() {
     });
 }
 
+function fitContainerToViewport() {
+    const container = document.querySelector('.container')
+    if (!container) return
+
+    // Reset any prior sizing/transform before measuring.
+    container.style.transform = 'none'
+    container.style.height = 'auto'
+
+    const tabs = document.querySelectorAll('.tab-content')
+
+    // Remember current active tab so we can restore it.
+    const previouslyActive = document.querySelector('.tab-content.active')
+
+    // Measure each tab in isolation by making it the only active one.
+    let maxH = 0
+    tabs.forEach(t => {
+        tabs.forEach(other => other.classList.remove('active'))
+        t.classList.add('active')
+        // Force reflow.
+        const h = t.offsetHeight
+        if (h > maxH) maxH = h
+    })
+
+    // Restore active tab.
+    tabs.forEach(t => t.classList.remove('active'))
+    if (previouslyActive) previouslyActive.classList.add('active')
+
+    const baseW = container.offsetWidth || 400
+    const baseH = maxH
+
+    container.style.height = baseH + 'px'
+    const f = Math.min(window.innerWidth / baseW, window.innerHeight / baseH)
+    container.style.transform = `scale(${f})`
+}
+
 function setSimulationMode() {
     if(simulationMode) {
         document.getElementById('clock-address').value = clockAddress
@@ -136,6 +171,7 @@ function saveClockAddress(event) {
 
 document.addEventListener("DOMContentLoaded", async () => {
     renderUiWidgets(parseCsvToJson(csv))
+    if (typeof customizeSelects === 'function') customizeSelects()
     addSubmitListener()
     initTabs()
 
@@ -165,4 +201,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await setupEventHandlersAndSync(Type.brightness, "input", ["brightness.lightMin"])
     await setupEventHandlersAndSync(Type.dst, "input", ["dst.timezone"])
     setSimulationMode()
+
+    fitContainerToViewport()
+    window.addEventListener('resize', fitContainerToViewport)
 })
