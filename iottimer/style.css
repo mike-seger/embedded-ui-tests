@@ -21,7 +21,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 body,* {
@@ -42,7 +42,7 @@ a {
 .container {
     width: var(--body-width);
     position: relative;
-    transform-origin: 50% 50%;
+    transform-origin: 50% 0%;
     flex: 0 0 auto;
 }
 
